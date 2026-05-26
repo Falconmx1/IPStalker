@@ -68,3 +68,75 @@ Zona horaria: America/Los_Angeles
     bash 4+
 
 Se instalan automáticamente con el script si no existen (excepto en Termux, hazlo manualmente con pkg install).
+
+
+📚 Guía de uso de las nuevas funcionalidades
+1️⃣ Mapa para cada IP en modo batch (-m-all)
+bash
+
+# Abre un mapa en el navegador por cada IP del archivo
+./ipstalker.sh -f ips.txt -m-all
+
+2️⃣ Formato JSON (automático con extensión .json)
+bash
+
+# Exportar IP individual a JSON
+./ipstalker.sh -i 8.8.8.8 -o resultado.json
+
+# Exportar batch a JSON
+./ipstalker.sh -f ips.txt -o resultados.json
+
+# JSON + modo silencioso (solo genera archivo, sin output en pantalla)
+./ipstalker.sh -f ips.txt -o datos.json -s
+
+3️⃣ Barra de progreso (automática en modo batch sin exportación)
+bash
+
+# Verás algo como: [████████████░░░░░░░░] 60% (6/10)
+./ipstalker.sh -f ips.txt
+
+📄 Ejemplos de archivos generados
+JSON output (resultados.json)
+json
+
+[
+{
+  "status": "success",
+  "country": "United States",
+  "countryCode": "US",
+  "region": "CA",
+  "regionName": "California",
+  "city": "Mountain View",
+  "zip": "94043",
+  "lat": 37.4056,
+  "lon": -122.0775,
+  "timezone": "America/Los_Angeles",
+  "isp": "Google LLC",
+  "org": "Google LLC",
+  "as": "AS15169 Google LLC",
+  "query": "8.8.8.8"
+},
+{
+  "status": "success",
+  "country": "Australia",
+  "countryCode": "AU",
+  "region": "QLD",
+  "regionName": "Queensland",
+  "city": "Brisbane",
+  "zip": "4000",
+  "lat": -27.4679,
+  "lon": 153.0325,
+  "timezone": "Australia/Brisbane",
+  "isp": "Cloudflare Inc",
+  "org": "Cloudflare Inc",
+  "as": "AS13335 Cloudflare Inc",
+  "query": "1.1.1.1"
+}
+]
+
+CSV output (resultados.csv)
+csv
+
+IP,País,Código,Región,Ciudad,Código Postal,Latitud,Longitud,ISP,Zona Horaria
+"8.8.8.8","United States","US","California","Mountain View","94043","37.4056","-122.0775","Google LLC","America/Los_Angeles"
+"1.1.1.1","Australia","AU","Queensland","Brisbane","4000","-27.4679","153.0325","Cloudflare Inc","Australia/Brisbane"
